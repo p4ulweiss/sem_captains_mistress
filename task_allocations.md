@@ -16,6 +16,6 @@ Project contributers: Stefan Ebner, Paul Weiss
 - [ ] Writing test classes for all methods - Stefan Ebner
 
 ### Creating computer opponent
-- [ ] Create logic for computer opponent
-- [ ] Develop algorithms for determining the best moves
-- [ ] Integrating computer opponent into game structure (UI, game logic)
+- [ ] Create logic for computer opponent - Paul Weiss
+- [ ] Develop algorithms for determining the best moves - Paul Weiss
+- [ ] Integrating computer opponent into game structure (UI, game logic) - Paul Weiss
