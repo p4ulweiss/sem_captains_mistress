@@ -94,3 +94,74 @@ class GameBoard:
                 self.board[row][col] = token
                 return True
         raise ColumnFullError("Column is full of tokens!")
+
+    def check_winner(self) -> bool:
+        """ Checks if there is a winner on the game board.
+
+        This function looks up the game board and checks if there is a winner.
+        Returns
+        -------
+        bool
+            True if there is a winner, False otherwise.
+        """
+        # down, right, diagonal up-right, diagonal up-left
+        directions = [(1, 0), (0, 1), (1, 1), (-1, 1)]
+        for row in range(self.rows - 1, -1, -1):
+            for col in range(0, self.cols, 1):
+                if self.board[row][col] != GameToken.EMPTY:
+                    for drow, dcol in directions:
+                        count = 0
+                        r = row
+                        c = col
+                        while 0 <= r < self.rows and 0 <= c < self.cols:
+                            if self.board[r][c] == self.board[row][col]:
+                                count += 1
+                                if count == 4:
+                                    return True
+                            else:
+                                count = 0
+                            r = r + drow
+                            c = c + dcol
+        return False
+
+    def print_board(self):
+        """Prints the game board.
+
+        This function prints the current state of the game board with borders and indices.
+
+        Returns
+        -------
+        None
+            This function does not return anything.
+        """
+        print('+' + '-' * (4 * self.cols - 1) + '+')
+        for row in self.board:
+            # Convert GameToken objects to colored strings
+            row_str = [self.colorize(token) for token in row]
+            print('| ' + ' | '.join(row_str) + ' |')
+            print('+' + '-' * (4 * self.cols - 1) + '+')
+        print('  ' + '   '.join(str(i) for i in range(self.cols)))
+        print("\n\n\n")
+
+    def colorize(self, token) -> str:
+        """
+        Colorizes the token for display.
+
+        This function colorizes the token based on its value.
+
+        Parameters
+        ----------
+        token : GameToken
+            The token to be colorized.
+
+        Returns
+        -------
+        str
+            The colorized token value.
+        """
+        if token == GameToken.RED:
+            return self.COLOR_RED + token.value + self.COLOR_RESET
+        elif token == GameToken.YELLOW:
+            return self.COLOR_YELLOW + token.value + self.COLOR_RESET
+        else:
+            return token.value
