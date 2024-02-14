@@ -1,6 +1,8 @@
 import random
 from captains_mistress.gamecomponents.gametoken import GameToken
 from captains_mistress.gamecomponents.gameboard import GameBoard
+from captains_mistress.exceptions.columnfullerror import ColumnFullError
+
 
 class GameEngine:
     """
@@ -53,6 +55,58 @@ class GameEngine:
         else:
             self.current_player = GameToken.RED
 
+    def play_two_players(self) -> None:
+        """
+        Starts a two-player game.
+
+        Returns
+        -------
+        None
+            This method does not return anything.
+        """
+        print("------------------------------")
+        print("Game Start 1vs1: ")
+        print("------------------------------")
+        max_moves = self.game_board.cols * self.game_board.rows
+        number_of_moves = 0
+        while number_of_moves < max_moves:
+            input_column = input(f"Player {str(self.current_player)} enter column: ")
+            is_valid_game_move = self.game_move(input_column)
+            if is_valid_game_move:
+                self.game_board.print_board()
+                if self.game_board.check_winner():
+                    print(f"Winner is {str(self.current_player)}")
+                    return
+                self.switch_player()
+                number_of_moves += 1
+        print("Game is a draw!")
+
+    def game_move(self, input_column: str) -> bool:
+        """
+        Processes a game move.
+
+        Parameters
+        ----------
+        input_column : str
+            The column where the current player wants to drop a token.
+
+        Returns
+        -------
+        bool
+            True if the move is valid, False otherwise.
+        """
+        try:
+            self.game_board.drop_token(int(input_column), self.current_player)
+            return True
+        except ValueError:
+            print("Please enter a valid column number!")
+        except IndexError:
+            print("Please enter a valid column number!")
+        except ColumnFullError:
+            print("Column is full of tokens")
+        return False
+
+
 if __name__ == "__main__":
     game_engine = GameEngine()
     print("Captains Mistress")
@@ -61,7 +115,7 @@ if __name__ == "__main__":
     print("Press any other button to quit")
     selection = input("Your choice: ")
     if selection == '0':
-        #game_engine.play_two_players()
+        game_engine.play_two_players()
         pass
     elif selection == '1':
         #game_engine.play_against_computer()
