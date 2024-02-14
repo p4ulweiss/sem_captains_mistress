@@ -9,6 +9,7 @@ class TestGameLogic(unittest.TestCase):
     def setUp(self):
         self.game_engine = GameEngine()
 
+    #testing player switch method
     def test_switch_player(self):
         self.game_engine.current_player = GameToken.RED
         self.game_engine.switch_player()
