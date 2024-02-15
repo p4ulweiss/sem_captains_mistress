@@ -59,6 +59,15 @@ class GameBoard:
         pass
 
     def reset_gameboard(self) -> None:
+        """ Resets the gameboard.
+
+        This function replaces all game fields in board with empty state.
+
+        Returns
+        -------
+        None
+            This function does not return anything.
+        """
         self.board = [[GameToken.EMPTY for _ in range(self.cols)] for _ in range(self.rows)]
         pass
 
