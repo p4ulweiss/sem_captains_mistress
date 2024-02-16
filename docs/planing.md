@@ -1,8 +1,12 @@
 # Project planing
 Initial planing of the project. 
 
-## What classes do we need?
+## Overall project structure
+Structure the project into packages and modules with their purpose.
+The central elements we think of would be: gamecomponents and gamelogic. 
 
+## What classes do we need?
+We focus to implement classes in each python package for a object-oriented approach.
 - **Game board**
   - Contains the field itself and methods to manipulate and check for winners
   - Attributes:
@@ -32,15 +36,9 @@ Initial planing of the project.
 
 ## What changed during developing?
 First, we decided to use a enum gametoken to manage the state of each slot. 
-It controlls whether it is YELLOW, RED or EMPTY. 
+It controls whether it is YELLOW, RED or EMPTY field in the board. 
 Moreover, we decided to drop the player class and just use Yellow or Red to identify who has the next move.
 Another difference to the initial planing is the UI class. Since everything is managed in GameEngine input is made here.
 The display_board() function is now part of the board like a to_string function. 
-Furthermore, we added a custom exception in case a column is full with tokens. 
-
-
-
-
-
-
-
+Furthermore, we added a custom exception in case a column is full with tokens called columnfullerror.
+For the computer opponent we implemented a module with methods to determine the best move. It takes the field and gametoken as parameters and returns the best column calculated with the algorithm.
