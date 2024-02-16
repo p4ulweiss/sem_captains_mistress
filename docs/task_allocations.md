@@ -69,7 +69,7 @@ Project contributors: Stefan Ebner, Paul Weiss
   - Writing method for playing vs computer in game engine
   - Commits: f3a1d26
 
-#### Design Pattern Explanations
+### Design Patterns
 - [X] Add a design pattern explanation - Stefan Ebner
   - Describe singleton pattern
   - Commit: 94496bf
@@ -77,7 +77,7 @@ Project contributors: Stefan Ebner, Paul Weiss
   - Describe Observer pattern
   - Commit: 89698a5
 
-#### Software Design Theory Question
+### Software Design Theory Question
 - [X] Add the answer to the software design theory question - Stefan Ebner
   - Commit: 533eabb
 
