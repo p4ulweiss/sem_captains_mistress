@@ -1,7 +1,7 @@
 import unittest
 
 from captains_mistress.gamecomponents.gametoken import GameToken
-from captains_mistress.gamelogics.game_engine import GameEngine
+from captains_mistress.game_engine import GameEngine
 
 
 class TestGameLogic(unittest.TestCase):
