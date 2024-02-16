@@ -3,7 +3,7 @@ Project contributors: Stefan Ebner, Paul Weiss
 
 ### Setup project / Organisation
 - [X] Create git repository - Paul Weiss
-  - Create git repository for the project captains mistress on https://github.com/p4ulweiss/sem_captains_mistress/tree/main/docs
+  - Create git repository for the project captains mistress on https://github.com/p4ulweiss/sem_captains_mistress/
   - Commit: 166289e
 - [X] Add .gitignore File - Stefan Ebner
   - Generate a .gitignore file
