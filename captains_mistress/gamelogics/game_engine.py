@@ -1,4 +1,6 @@
 import random
+
+from captains_mistress.gamecomponents import computer_opponent
 from captains_mistress.gamecomponents.gametoken import GameToken
 from captains_mistress.gamecomponents.gameboard import GameBoard
 from captains_mistress.exceptions.columnfullerror import ColumnFullError
@@ -106,6 +108,41 @@ class GameEngine:
             print("Column is full of tokens")
         return False
 
+    def play_against_computer(self):
+        """
+        Starts a game against the computer.
+
+        Returns
+        -------
+        None
+            This method does not return anything.
+        """
+        print("------------------------------")
+        print("Game Start against Computer: ")
+        print("------------------------------")
+        max_moves = self.game_board.cols * self.game_board.rows
+        number_of_moves = 0
+        computer_player = random.choice([GameToken.RED, GameToken.YELLOW])
+        while number_of_moves < max_moves:
+            if self.current_player == computer_player:
+                col = computer_opponent.find_best_move(self.game_board, computer_player)
+                is_valid_game_move = self.game_move(col)
+            else:
+                input_column = input(f"Player {str(self.current_player)} enter column: ")
+                is_valid_game_move = self.game_move(input_column)
+
+            if is_valid_game_move:
+                self.game_board.print_board()
+                if self.game_board.check_winner():
+                    if computer_player == self.current_player:
+                        print(f"Computer won! Better luck next time!")
+                    else:
+                        print(f"Congratulations, you won!")
+                    return
+                self.switch_player()
+                number_of_moves += 1
+        print("Game is a draw!")
+
 
 if __name__ == "__main__":
     game_engine = GameEngine()
@@ -118,7 +155,7 @@ if __name__ == "__main__":
         game_engine.play_two_players()
         pass
     elif selection == '1':
-        #game_engine.play_against_computer()
+        game_engine.play_against_computer()
         pass
     print("Goodbye!")
     pass
